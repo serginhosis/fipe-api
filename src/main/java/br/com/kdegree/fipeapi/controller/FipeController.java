@@ -12,7 +12,7 @@ public class FipeController {
 
     @GetMapping("/api/{modelo}/{ano}")
     public Fipe getFipe(@PathVariable String modelo, @PathVariable int ano){
-        int valor = new Random().nextInt(10000, 100000) + 10000;
+        int valor = getRandomNumber(10000, 100000);
         return new Fipe(BigDecimal.valueOf(valor));
     }
 
@@ -20,5 +20,9 @@ public class FipeController {
         BigDecimal valor;
         public Fipe(BigDecimal valor){this.valor = valor;}
         public BigDecimal getValor() {return valor;}
+    }
+
+    public int getRandomNumber(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min);
     }
 }
